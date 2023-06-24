@@ -1,0 +1,49 @@
+{
+  "name": "typeorm-multi-tenant",
+  "version": "1.0.0",
+  "description": "lib which makes life easy to work with multi tenet using typeorm",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "main": "./dist/typeorm-multi-tenant.umd.cjs",
+  "module": "./dist/typeorm-multi-tenant.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/typeorm-multi-tenant.js",
+      "require": "./dist/typeorm-multi-tenant.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teziapp/typeorm-multi-tenant.git"
+  },
+  "keywords": [
+    "typeorm",
+    "multi-tenet"
+  ],
+  "author": "Karan Janthe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teziapp/typeorm-multi-tenant/issues"
+  },
+  "homepage": "https://github.com/teziapp/typeorm-multi-tenant#readme",
+  "devDependencies": {
+    "@types/node": "^20.3.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9",
+    "vite-plugin-dts": "^2.3.0",
+    "vitest": "^0.32.2"
+  }
+}
