@@ -23,7 +23,12 @@
   },
   "keywords": [
     "typeorm",
-    "multi-tenet"
+    "multi-tenet",
+    "ORM",
+    "Postgres",
+    "Database",
+    "Node.js",
+    "Connection manager"
   ],
   "author": "Karan Janthe",
   "license": "MIT",
