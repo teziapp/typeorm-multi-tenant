@@ -1,11 +1,30 @@
 {
   "name": "express",
   "module": "index.ts",
-  "type": "module",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
+    "typeorm": "ts-node ./node_modules/typeorm/cli",
+    "typeorm:run-migrations": "npm run typeorm migration:run -- -d ./src/database.ts",
+    "typeorm:generate-migration": "npm run typeorm -- -d ./src/database.ts migration:generate ./src/typeorm/migration/$npm_config_name",
+    "typeorm:create-migration": "npm run typeorm -- migration:create ./src/typeorm/migration/$npm_config_name",
+    "typeorm:revert-migration": "npm run typeorm -- -d ./src/database.ts migration:revert"
+  },
+  "engine": {
+    "node": ">=16.0.0"
+  },
   "devDependencies": {
+    "@types/express": "^4.17.20",
     "bun-types": "latest"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "concurrently": "^8.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "pg": "^8.11.3"
   }
 }
