@@ -7,18 +7,13 @@
     "test": "test"
   },
   "scripts": {
+    "build": "tsup",
     "test": "vitest",
     "coverage": "vitest run --coverage"
   },
-  "main": "./dist/typeorm-multi-tenant.umd.cjs",
-  "module": "./dist/typeorm-multi-tenant.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/typeorm-multi-tenant.js",
-      "require": "./dist/typeorm-multi-tenant.umd.cjs"
-    }
-  },
   "files": [
     "dist"
   ],
@@ -41,6 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "eslint": "^8.43.0",
+    "tsup": "^7.2.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
     "vite-plugin-dts": "^2.3.0",
