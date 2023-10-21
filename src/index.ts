@@ -1,1 +1,1 @@
-export { default as hello } from './client/index'
+export { default as multiTenetConnectionManager } from './client/index'

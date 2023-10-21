@@ -1,5 +1,17 @@
-import { Connection, DataSourceOptions, createConnection, getConnectionManager } from "typeorm";
+import { Connection, createConnection, getConnectionManager } from "typeorm";
+import { CockroachConnectionOptions } from "typeorm/driver/cockroachdb/CockroachConnectionOptions.js";
+import { OracleConnectionOptions } from "typeorm/driver/oracle/OracleConnectionOptions.js";
+import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions.js";
+import { SapConnectionOptions } from "typeorm/driver/sap/SapConnectionOptions.js";
+import { SpannerConnectionOptions } from "typeorm/driver/spanner/SpannerConnectionOptions.js";
+import { SqlServerConnectionOptions } from "typeorm/driver/sqlserver/SqlServerConnectionOptions.js";
 
+export  type supportedDataSourceOption =  PostgresConnectionOptions | CockroachConnectionOptions  | SqlServerConnectionOptions | SapConnectionOptions | OracleConnectionOptions   | SpannerConnectionOptions;
+
+type CustomDataSourceOptions<T extends supportedDataSourceOption> = T & {
+  schema: string;
+  name: string;
+} & (T extends { type: "cockroachdb" } ? { timeTravelQueries: boolean } : {});
 
 export default class manager{
     connectionManager = getConnectionManager();  
@@ -24,15 +36,15 @@ export default class manager{
       return await this.createConnection(name)
     }
 
-    async createConnection(name: string, schema = 'public') {
+    async createConnection<T extends supportedDataSourceOption>(name: string, schema = 'public') {
       this.defaultConnection = this.connectionManager.get(); // Retrieve the default connection here
   
-      let config: DataSourceOptions = {
+      let config: CustomDataSourceOptions<T> = {
         ...this.defaultConnection.options,
         schema: schema,
         name: name
-      };
-      
+      } as CustomDataSourceOptions<T>;
+  
       const newConnection = await createConnection(config);
       this.connectionManager.connections.push(newConnection); // Push the newConnection object into connections array
       return newConnection;
