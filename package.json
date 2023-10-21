@@ -1,6 +1,6 @@
 {
   "name": "typeorm-multi-tenant",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "lib which makes life easy to work with multi tenet using typeorm",
   "directories": {
     "doc": "docs",
